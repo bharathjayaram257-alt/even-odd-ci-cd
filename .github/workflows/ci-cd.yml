@@ -1,3 +1,4 @@
+
 name: Java Maven CI and Docker Publish
 
 on:
@@ -24,7 +25,11 @@ jobs:
       - name: Run JUnit tests and package application
         run: mvn --batch-mode clean verify
 
-      # Publish only after a successful push to main/master.
+      # Intentional failure for demonstration
+      - name: Intentional Failure Test
+        run: exit 1
+
+      # Docker publishing steps
       - name: Set up Docker Buildx
         if: github.event_name == 'push'
         uses: docker/setup-buildx-action@v3
